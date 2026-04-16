@@ -37,7 +37,6 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void add(int index, T item) {
-        if (index < 0 || index > size) throw new IndexOutOfBoundsException();
 
         ensureCapacity();
 
@@ -51,25 +50,21 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public T get(int index) {
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
         return (T) array[index];
     }
 
     @Override
     public T getFirst() {
-        if (isEmpty()) throw new RuntimeException("Empty");
         return (T) array[0];
     }
 
     @Override
     public T getLast() {
-        if (isEmpty()) throw new RuntimeException("Empty");
         return (T) array[size - 1];
     }
 
     @Override
     public void remove(int index) {
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
 
         for (int i = index; i < size - 1; i++) {
             array[i] = array[i + 1];
@@ -85,23 +80,25 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void removeLast() {
-        if (isEmpty()) throw new RuntimeException("Empty");
-        array[--size] = null;
+        Object[] newArray = new Object[size - 1];
+        for (int i = 0; i < size - 1; i++) {
+            newArray[i] = array[i];
+        }
+        array = newArray;
     }
 
     @Override
     public void sort() {
-        // simple bubble sort
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size - i - 1; j++) {
+        for(int i = 0; i < size - 1; i++) {
+            for(int j = 0; j < size - i - 1; j++){
                 Comparable a = (Comparable) array[j];
-                Comparable b = (Comparable) array[j + 1];
-
-                if (a.compareTo(b) > 0) {
+                Comparable b = (Comparable) array[j+1];
+                if(a.compareTo(b) > 0){
                     Object temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
                 }
+
             }
         }
     }
@@ -158,16 +155,17 @@ public class MyArrayList<T> implements MyList<T> {
         array[index] = value;
     }
 
-    @Override
+    @Override //чтоб не ругался
     public Iterator<T> iterator() {
         return null;
     }
 
-    public void  print() {
+    public void print() {
         for (int i = 0; i < size; i++) {
             System.out.print(array[i] + " ");
         }
         System.out.println();
     }
+
 
 }

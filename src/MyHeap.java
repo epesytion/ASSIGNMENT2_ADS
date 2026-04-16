@@ -7,12 +7,10 @@ public class MyHeap {
     }
 
     public int getMin() {
-        if (heap.isEmpty()) throw new RuntimeException("Empty");
         return heap.get(0);
     }
 
     public int removeMin() {
-        if (heap.isEmpty()) throw new RuntimeException("Empty");
 
         int min = heap.get(0);
         heap.set(0, heap.get(heap.size() - 1));

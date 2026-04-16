@@ -66,7 +66,6 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void add(int index, T item) {
-        if (index < 0 || index > size) throw new IndexOutOfBoundsException();
 
         if (index == 0) {
             addFirst(item);
@@ -95,7 +94,6 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public T get(int index) {
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
 
         MyNode current = head;
         for (int i = 0; i < index; i++) {
@@ -107,20 +105,16 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public T getFirst() {
-        if (head == null) throw new RuntimeException("Empty");
         return head.data;
     }
 
     @Override
     public T getLast() {
-        if (tail == null) throw new RuntimeException("Empty");
         return tail.data;
     }
 
     @Override
     public void remove(int index) {
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
-
         if (index == 0) {
             removeFirst();
             return;
@@ -143,8 +137,6 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void removeFirst() {
-        if (head == null) throw new RuntimeException("Empty");
-
         head = head.next;
         if (head != null) head.prev = null;
         else tail = null;
@@ -154,8 +146,6 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void removeLast() {
-        if (tail == null) throw new RuntimeException("Empty");
-
         tail = tail.prev;
         if (tail != null) tail.next = null;
         else head = null;
@@ -213,8 +203,12 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        for (MyNode i = head; i!= null; i = i.next ) {
+            if (i.data != null) return false;
+        }
+        return true;
     }
+
     public void print() {
         for (MyNode i = head; i != null; i = i.next) {
             System.out.print(i.data + " ");

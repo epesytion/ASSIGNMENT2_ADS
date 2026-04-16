@@ -6,7 +6,6 @@ public class MyQueue<T> {
     }
 
     public T dequeue() {
-        if (list.isEmpty()) throw new RuntimeException("Empty");
         T val = list.getFirst();
         list.removeFirst();
         return val;

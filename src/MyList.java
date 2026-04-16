@@ -10,8 +10,8 @@ public interface MyList<T> extends Iterable<T>{
     void remove(int index);
     void removeFirst(); //queue minHeap
     void removeLast(); //stack
-    void sort();
-    int indexOf(Object object);
+    void sort(); //all
+    int indexOf(Object object); //array
     int lastIndexOf(Object object); //stack queue
     boolean exists(Object object); //all
     public Object[] toArray(); //heap
