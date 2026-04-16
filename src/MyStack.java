@@ -6,14 +6,12 @@ public class MyStack<T> {
     }
 
     public T pop() {
-        if (list.isEmpty()) throw new RuntimeException("Empty");
         T val = list.getLast();
         list.removeLast();
         return val;
     }
 
     public T peek() {
-        if (list.isEmpty()) throw new RuntimeException("Empty");
         return list.getLast();
     }
 
